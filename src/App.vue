@@ -2,24 +2,26 @@
   <div id="app">
     <input type="text" placeholder="search query" v-model="searchQuery" />
     <button id="submit-query" @click="fetchMovies">Search</button>
-    <ul>
-      <li v-for="(movie, index) in movies[0]" :key="movie.id || index">
-        <ul>
-          <li>{{ movie.title }}</li>
-          <li>{{ movie.original_title }}</li>
-          <li>{{ movie.original_language }}</li>
-          <li>{{ movie.vote_average }}</li>
-        </ul>
-      </li>
-    </ul>
+    <SearchResult
+      v-for="(movie, index) in movies[0]"
+      :key="movie.id || index"
+      :movie-title="movie.title"
+      :movie-original-title="movie.original_title"
+      :movie-original-language="movie.original_language"
+      :movie-vote-average="movie.vote_average"
+    />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import SearchResult from "./components/SearchResult.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    SearchResult,
+  },
   data() {
     return {
       searchQuery: "",
