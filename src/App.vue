@@ -2,6 +2,16 @@
   <div id="app">
     <input type="text" placeholder="search query" v-model="searchQuery" />
     <button id="submit-query" @click="fetchMovies">Search</button>
+    <ul>
+      <li v-for="(movie, index) in movies[0]" :key="movie.id || index">
+        <ul>
+          <li>{{ movie.title }}</li>
+          <li>{{ movie.original_title }}</li>
+          <li>{{ movie.original_language }}</li>
+          <li>{{ movie.vote_average }}</li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
 
