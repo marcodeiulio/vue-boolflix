@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     fetchMovies() {
+      this.movies = [];
       axios
         .get(
           `https://api.themoviedb.org/3/${this.api.moviesEndpoint}${this.api.api_key}&query=${this.searchQuery}`
