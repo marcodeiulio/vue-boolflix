@@ -1,5 +1,11 @@
 <template>
   <ul>
+    <li v-if="moviePoster || seriePoster">
+      <img
+        :src="`${posterBaseUrl}${posterWidth}${moviePoster || seriePoster}`"
+        alt="poster"
+      />
+    </li>
     <li>
       <h3>Title: {{ movieTitle || serieName }}</h3>
     </li>
@@ -24,6 +30,8 @@ export default {
   data() {
     return {
       flags: ["it", "en"],
+      posterBaseUrl: "http://image.tmdb.org/t/p",
+      posterWidth: "/w500",
     };
   },
   computed: {
@@ -39,10 +47,12 @@ export default {
     },
   },
   props: {
+    moviePoster: String,
     movieTitle: String,
     movieOriginalTitle: String,
     movieOriginalLanguage: String,
     movieVoteAverage: Number,
+    seriePoster: String,
     serieName: String,
     serieOriginalName: String,
     serieOriginalLanguage: String,

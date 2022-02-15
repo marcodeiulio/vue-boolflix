@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <input type="text" placeholder="search query" v-model="searchQuery" />
+    <input
+      type="text"
+      placeholder="search query"
+      v-model="searchQuery"
+      @keyup.enter="searchItems"
+    />
     <button id="submit-query" @click="searchItems">Search</button>
     <h2 v-if="fetchedMoviesFlag">Movies</h2>
     <SearchResult
       v-for="(movie, index) in movies[0]"
       :key="movie.id || index"
+      :movie-poster="movie.backdrop_path"
       :movie-title="movie.title"
       :movie-original-title="movie.original_title"
       :movie-original-language="movie.original_language"
@@ -15,6 +21,7 @@
     <SearchResult
       v-for="(serie, index) in series[0]"
       :key="serie.id || index"
+      :serie-poster="serie.backdrop_path"
       :serie-name="serie.name"
       :serie-original-name="serie.original_name"
       :serie-original-language="serie.original_language"
@@ -34,7 +41,7 @@ export default {
   },
   data() {
     return {
-      searchQuery: "",
+      searchQuery: "bat",
       api: {
         baseUri: "https://api.themoviedb.org/3",
         moviesEndpoint: "search/movie",
