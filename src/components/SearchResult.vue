@@ -1,11 +1,13 @@
 <template>
   <ul>
     <li>
-      <h3>Title: {{ movieTitle }}</h3>
+      <h3>Title: {{ movieTitle || serieName }}</h3>
     </li>
-    <li>Original Language: {{ movieOriginalLanguage }}</li>
-    <li>Original Title: {{ movieOriginalTitle }}</li>
-    <li>Average Score: {{ movieVoteAverage }}</li>
+    <li>
+      Original Language: {{ movieOriginalLanguage || serieOriginalLanguage }}
+    </li>
+    <li>Original Title: {{ movieOriginalTitle || serieOriginalName }}</li>
+    <li>Average Score: {{ movieVoteAverage || serieVoteAverage }}</li>
   </ul>
 </template>
 
@@ -16,6 +18,10 @@ export default {
     movieOriginalTitle: String,
     movieOriginalLanguage: String,
     movieVoteAverage: Number,
+    serieName: String,
+    serieOriginalName: String,
+    serieOriginalLanguage: String,
+    serieVoteAverage: Number,
   },
 };
 </script>
