@@ -18,6 +18,7 @@
         :movie-original-title="movie.original_title"
         :movie-original-language="movie.original_language"
         :movie-vote-average="movie.vote_average"
+        :movie-id="movie.id"
       />
     </section>
     <h2 v-if="fetchedShowsFlag">TV Shows</h2>
@@ -30,6 +31,7 @@
         :serie-original-name="serie.original_name"
         :serie-original-language="serie.original_language"
         :serie-vote-average="serie.vote_average"
+        :serie-id="serie.id"
       />
     </section>
   </div>
@@ -59,6 +61,11 @@ export default {
       fetchedMoviesFlag: 0,
       fetchedShowsFlag: 0,
     };
+  },
+  computed: {
+    movieFlag() {
+      return this.movies.length > 0;
+    },
   },
   methods: {
     searchItems(query) {
