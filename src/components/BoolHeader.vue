@@ -26,4 +26,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped lang="scss">
+@import "../assets/scss/_vars.scss";
+header {
+  background-color: $black;
+  padding: 20px 10px;
+
+  button {
+    color: $black;
+  }
+  input {
+    color: $black;
+  }
+}
+</style>
