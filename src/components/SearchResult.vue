@@ -1,39 +1,48 @@
 <template>
-  <ul>
-    <li v-if="moviePoster || seriePoster">
-      <img
-        :src="`${posterBaseUrl}${posterWidth}${moviePoster || seriePoster}`"
-        alt="poster"
-      />
-    </li>
-    <li>
-      <h3>Title: {{ movieTitle || serieName }}</h3>
-    </li>
-    <li>
-      <img
-        v-if="hasFlag"
-        :src="flagImg"
-        :alt="movieOriginalLanguage || serieOriginalLanguage"
-      />
-      <span v-else
-        >Original Language:
-        {{ movieOriginalLanguage || serieOriginalLanguage }}
-      </span>
-    </li>
-    <li>Original Title: {{ movieOriginalTitle || serieOriginalName }}</li>
-    <li>
-      <i
-        v-for="(i, index) in voteMovie || voteSerie || 0"
-        :key="index"
-        class="fa-solid fa-star"
-      ></i>
-      <i
-        v-for="(i, y) in 5 - voteMovie || 5 - voteSerie"
-        :key="y + 5"
-        class="fa-regular fa-star"
-      ></i>
-    </li>
-  </ul>
+  <div>
+    <ul>
+      <li>
+        <img
+          v-if="moviePoster || seriePoster"
+          :src="`${posterBaseUrl}${posterWidth}${moviePoster || seriePoster}`"
+          :alt="moviePoster || seriePoster"
+        />
+        <img
+          v-else
+          src="https://www.altavod.com/assets/images/poster-placeholder.png"
+          :alt="movieTitle || serieName"
+        />
+      </li>
+      <li>
+        <h3>Title: {{ movieTitle || serieName }}</h3>
+      </li>
+      <li>
+        <img
+          class="flag"
+          v-if="hasFlag"
+          :src="flagImg"
+          :alt="movieOriginalLanguage || serieOriginalLanguage"
+        />
+        <span v-else
+          >Original Language:
+          {{ movieOriginalLanguage || serieOriginalLanguage }}
+        </span>
+      </li>
+      <li>Original Title: {{ movieOriginalTitle || serieOriginalName }}</li>
+      <li>
+        <i
+          v-for="(i, index) in voteMovie || voteSerie || 0"
+          :key="index"
+          class="fa-solid fa-star"
+        ></i>
+        <i
+          v-for="(i, y) in 5 - voteMovie || 5 - voteSerie"
+          :key="y + 5"
+          class="fa-regular fa-star"
+        ></i>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -79,10 +88,7 @@ export default {
 </script>
 
 <style>
-/* 
-TODO Da rimuovere
- */
-img {
+.flag {
   width: 50px;
 }
 </style>
