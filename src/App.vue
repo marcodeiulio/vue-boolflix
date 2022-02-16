@@ -20,6 +20,7 @@
         :movie-vote-average="movie.vote_average"
         :movie-id="movie.id"
         :movie-release-date="movie.release_date"
+        :movie-overview="movie.overview"
       />
     </section>
     <h2 v-if="fetchedShowsFlag">TV Shows</h2>
@@ -34,6 +35,7 @@
         :serie-vote-average="serie.vote_average"
         :serie-id="serie.id"
         :serie-firstair-date="serie.first_air_date"
+        :serie-overview="serie.overview"
       />
     </section>
   </div>

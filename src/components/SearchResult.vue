@@ -41,6 +41,10 @@
             class="fa-regular fa-star"
           ></i>
         </li>
+        <li>
+          <span class="highlight">Overview: </span
+          ><span class="overview">{{ movieOverview || serieOverview }}</span>
+        </li>
       </ul>
     </div>
   </a>
@@ -105,6 +109,7 @@ export default {
     movieVoteAverage: Number,
     movieId: Number,
     movieReleaseDate: String,
+    movieOverview: String,
     seriePoster: String,
     serieName: String,
     serieOriginalName: String,
@@ -112,6 +117,7 @@ export default {
     serieVoteAverage: Number,
     serieId: Number,
     serieFirstairDate: String,
+    serieOverview: String,
   },
 };
 </script>
@@ -144,6 +150,7 @@ export default {
   }
 
   .dimmer {
+    overflow: auto;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -176,6 +183,9 @@ export default {
         .highlight {
           color: $red;
           font-size: 1.8rem;
+        }
+        .overview {
+          font-size: 22px;
         }
       }
     }
