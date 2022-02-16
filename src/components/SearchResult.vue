@@ -161,7 +161,7 @@ export default {
     right: 0;
     left: 0;
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 10px;
     transition: background-color 0.8s;
     &:hover {
       background-color: rgba($color: #000000, $alpha: 0.8);

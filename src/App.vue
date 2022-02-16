@@ -10,33 +10,37 @@
     <button id="submit-query" @click="searchItems">Search</button> -->
     <h2 v-if="fetchedMoviesFlag">Movies</h2>
     <section id="movies-results">
-      <SearchResult
-        v-for="(movie, index) in movies[0]"
-        :key="movie.id || index"
-        :movie-poster="movie.backdrop_path"
-        :movie-title="movie.title"
-        :movie-original-title="movie.original_title"
-        :movie-original-language="movie.original_language"
-        :movie-vote-average="movie.vote_average"
-        :movie-id="movie.id"
-        :movie-release-date="movie.release_date"
-        :movie-overview="movie.overview"
-      />
+      <div class="wrapper">
+        <SearchResult
+          v-for="(movie, index) in movies[0]"
+          :key="movie.id || index"
+          :movie-poster="movie.backdrop_path"
+          :movie-title="movie.title"
+          :movie-original-title="movie.original_title"
+          :movie-original-language="movie.original_language"
+          :movie-vote-average="movie.vote_average"
+          :movie-id="movie.id"
+          :movie-release-date="movie.release_date"
+          :movie-overview="movie.overview"
+        />
+      </div>
     </section>
     <h2 v-if="fetchedShowsFlag">TV Shows</h2>
     <section id="series-results">
-      <SearchResult
-        v-for="(serie, index) in series[0]"
-        :key="serie.id || index"
-        :serie-poster="serie.backdrop_path"
-        :serie-name="serie.name"
-        :serie-original-name="serie.original_name"
-        :serie-original-language="serie.original_language"
-        :serie-vote-average="serie.vote_average"
-        :serie-id="serie.id"
-        :serie-firstair-date="serie.first_air_date"
-        :serie-overview="serie.overview"
-      />
+      <div class="wrapper">
+        <SearchResult
+          v-for="(serie, index) in series[0]"
+          :key="serie.id || index"
+          :serie-poster="serie.backdrop_path"
+          :serie-name="serie.name"
+          :serie-original-name="serie.original_name"
+          :serie-original-language="serie.original_language"
+          :serie-vote-average="serie.vote_average"
+          :serie-id="serie.id"
+          :serie-firstair-date="serie.first_air_date"
+          :serie-overview="serie.overview"
+        />
+      </div>
     </section>
   </div>
 </template>
@@ -116,9 +120,11 @@ export default {
 
 #movies-results,
 #series-results {
+  padding-left: 20px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
+  overflow: auto;
+  .wrapper {
+    display: flex;
+  }
 }
 </style>
