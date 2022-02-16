@@ -1,14 +1,16 @@
 <template>
   <header>
     <h1>Boolflix</h1>
-    <div>
+    <div id="search-module">
       <input
         type="text"
         placeholder="search movies and series"
         v-model="searchQuery"
         @keyup.enter="searchItems"
       />
-      <button id="submit-query" @click="searchItems">Search</button>
+      <span class="search-icon"
+        ><i class="fa-solid fa-search" @click="searchItems"></i
+      ></span>
     </div>
   </header>
 </template>
@@ -42,15 +44,24 @@ header {
     color: $red;
   }
 
-  button {
-    color: $black;
-    padding: 5px;
-    font-size: 0.8rem;
-  }
-  input {
-    color: $black;
-    padding: 5px 10px;
-    font-size: 0.8rem;
+  #search-module {
+    display: flex;
+    align-items: center;
+
+    input {
+      color: $black;
+      padding: 5px 10px;
+      font-size: 1rem;
+    }
+
+    .search-icon {
+      cursor: pointer;
+      padding: 0 10px;
+
+      .fa-search {
+        font-size: 30px;
+      }
+    }
   }
 }
 </style>
