@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <input
+    <BoolHeader @searchItems="searchItems" />
+    <!--     <input
       type="text"
       placeholder="search query"
       v-model="searchQuery"
       @keyup.enter="searchItems"
     />
-    <button id="submit-query" @click="searchItems">Search</button>
+    <button id="submit-query" @click="searchItems">Search</button> -->
     <h2 v-if="fetchedMoviesFlag">Movies</h2>
     <SearchResult
       v-for="(movie, index) in movies[0]"
@@ -33,15 +34,16 @@
 <script>
 import axios from "axios";
 import SearchResult from "./components/SearchResult.vue";
+import BoolHeader from "./components/BoolHeader.vue";
 
 export default {
   name: "App",
   components: {
     SearchResult,
+    BoolHeader,
   },
   data() {
     return {
-      searchQuery: "bat",
       api: {
         baseUri: "https://api.themoviedb.org/3",
         moviesEndpoint: "search/movie",
@@ -55,20 +57,20 @@ export default {
     };
   },
   methods: {
-    searchItems() {
+    searchItems(query) {
       this.movies = [];
       this.series = [];
       this.fetchedMoviesFlag = 0;
       this.fetchedShowsFlag = 0;
 
-      if (!this.searchQuery) return;
+      if (!query) return;
 
       const { api_key, baseUri, moviesEndpoint, seriesEndpoint } = this.api;
 
       const config = {
         params: {
           api_key,
-          query: this.searchQuery,
+          query: query,
         },
       };
 
