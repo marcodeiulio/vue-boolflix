@@ -9,25 +9,29 @@
     />
     <button id="submit-query" @click="searchItems">Search</button> -->
     <h2 v-if="fetchedMoviesFlag">Movies</h2>
-    <SearchResult
-      v-for="(movie, index) in movies[0]"
-      :key="movie.id || index"
-      :movie-poster="movie.backdrop_path"
-      :movie-title="movie.title"
-      :movie-original-title="movie.original_title"
-      :movie-original-language="movie.original_language"
-      :movie-vote-average="movie.vote_average"
-    />
+    <section id="movies-results">
+      <SearchResult
+        v-for="(movie, index) in movies[0]"
+        :key="movie.id || index"
+        :movie-poster="movie.backdrop_path"
+        :movie-title="movie.title"
+        :movie-original-title="movie.original_title"
+        :movie-original-language="movie.original_language"
+        :movie-vote-average="movie.vote_average"
+      />
+    </section>
     <h2 v-if="fetchedShowsFlag">TV Shows</h2>
-    <SearchResult
-      v-for="(serie, index) in series[0]"
-      :key="serie.id || index"
-      :serie-poster="serie.backdrop_path"
-      :serie-name="serie.name"
-      :serie-original-name="serie.original_name"
-      :serie-original-language="serie.original_language"
-      :serie-vote-average="serie.vote_average"
-    />
+    <section id="series-results">
+      <SearchResult
+        v-for="(serie, index) in series[0]"
+        :key="serie.id || index"
+        :serie-poster="serie.backdrop_path"
+        :serie-name="serie.name"
+        :serie-original-name="serie.original_name"
+        :serie-original-language="serie.original_language"
+        :serie-vote-average="serie.vote_average"
+      />
+    </section>
   </div>
 </template>
 
@@ -91,4 +95,15 @@ export default {
 
 <style lang="scss">
 @import "./assets/scss/style.scss";
+#app {
+  color: white;
+}
+
+#movies-results,
+#series-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
 </style>

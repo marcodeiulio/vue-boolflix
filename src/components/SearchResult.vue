@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="card" :style="{ backgroundImage: dynamicBackgroundImage }">
     <ul>
-      <li>
+      <!-- <li>
         <img
           v-if="moviePoster || seriePoster"
           :src="`${posterBaseUrl}${posterWidth}${moviePoster || seriePoster}`"
@@ -12,7 +12,7 @@
           src="https://www.altavod.com/assets/images/poster-placeholder.png"
           :alt="movieTitle || serieName"
         />
-      </li>
+      </li> -->
       <li>
         <h3>Title: {{ movieTitle || serieName }}</h3>
       </li>
@@ -52,9 +52,20 @@ export default {
       flags: ["it", "en"],
       posterBaseUrl: "http://image.tmdb.org/t/p",
       posterWidth: "/w500",
+      posterBackground: {
+        backgroundImage: `url(${this.dynamicBackgroundImage})`,
+      },
     };
   },
   computed: {
+    dynamicBackgroundImage() {
+      if (this.moviePoster || this.seriePoster) {
+        return `url(${this.posterBaseUrl}${this.posterWidth}${
+          this.moviePoster || this.seriePoster
+        })`;
+      } else
+        return `url(https://www.altavod.com/assets/images/poster-placeholder.png)`;
+    },
     voteMovie() {
       return Math.ceil(this.movieVoteAverage / 2);
     },
@@ -87,8 +98,34 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+@import "../assets/scss/_vars.scss";
+
 .flag {
   width: 50px;
+}
+
+.card {
+  height: 400px;
+  width: 300px;
+  margin-bottom: 25px;
+  background-image: url();
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  color: white;
+
+  &:hover ul {
+    display: block;
+  }
+  ul {
+    list-style-type: none;
+    display: none;
+    li {
+    }
+  }
 }
 </style>
