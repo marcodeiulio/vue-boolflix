@@ -18,7 +18,7 @@ export default {
   name: "BoolHeader",
   data() {
     return {
-      searchQuery: "bat",
+      searchQuery: "",
     };
   },
   methods: {

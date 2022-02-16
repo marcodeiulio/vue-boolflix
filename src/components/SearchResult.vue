@@ -1,23 +1,12 @@
 <template>
-  <div
+  <a
+    :href="resultLink()"
     class="card"
     :id="movieId || serieId"
     :style="{ backgroundImage: dynamicBackgroundImage }"
   >
     <div class="dimmer">
       <ul>
-        <!-- <li>
-          <img
-            v-if="moviePoster || seriePoster"
-            :src="`${posterBaseUrl}${posterWidth}${moviePoster || seriePoster}`"
-            :alt="moviePoster || seriePoster"
-          />
-          <img
-            v-else
-            src="https://www.altavod.com/assets/images/poster-placeholder.png"
-            :alt="movieTitle || serieName"
-          />
-        </li> -->
         <li>
           <h3>
             <span class="highlight">Title: </span> {{ movieTitle || serieName }}
@@ -54,7 +43,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -67,9 +56,15 @@ export default {
       posterBackground: {
         backgroundImage: `url(${this.dynamicBackgroundImage})`,
       },
+      resultLinkUri: "https://www.google.com/search?q=",
     };
   },
   computed: {
+    resultLinkQuery() {
+      return this.movieTitle
+        ? this.movieOriginalTitle.replace(" ", "+")
+        : this.serieOriginalName.replace(" ", "+");
+    },
     dynamicBackgroundImage() {
       if (this.moviePoster || this.seriePoster) {
         return `url(${this.posterBaseUrl}${this.posterWidth}${
@@ -93,6 +88,13 @@ export default {
       return this.flags.includes(
         this.movieOriginalLanguage || this.serieOriginalLanguage
       );
+    },
+  },
+  methods: {
+    resultLink() {
+      return this.movieTitle
+        ? `${this.resultLinkUri}${this.resultLinkQuery}+movie`
+        : `${this.resultLinkUri}${this.resultLinkQuery}+tv+series`;
     },
   },
   props: {
