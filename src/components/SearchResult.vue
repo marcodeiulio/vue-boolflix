@@ -21,7 +21,18 @@
       </span>
     </li>
     <li>Original Title: {{ movieOriginalTitle || serieOriginalName }}</li>
-    <li>Average Score: {{ voteMovie || voteSerie }}</li>
+    <li>
+      <i
+        v-for="(i, index) in voteMovie || voteSerie || 0"
+        :key="index"
+        class="fa-solid fa-star"
+      ></i>
+      <i
+        v-for="(i, y) in 5 - voteMovie || 5 - voteSerie"
+        :key="y + 5"
+        class="fa-regular fa-star"
+      ></i>
+    </li>
   </ul>
 </template>
 
