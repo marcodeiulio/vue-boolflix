@@ -62,8 +62,10 @@ export default {
   computed: {
     resultLinkQuery() {
       return this.movieTitle
-        ? this.movieOriginalTitle.replace(" ", "+")
-        : this.serieOriginalName.replace(" ", "+");
+        ? `${this.movieTitle.replace(" ", "+")}+${this.movieReleaseDate}+movie`
+        : `${this.serieName.replace(" ", "+")}+${
+            this.serieFirstairDate
+          }+tv+series`;
     },
     dynamicBackgroundImage() {
       if (this.moviePoster || this.seriePoster) {
@@ -92,9 +94,7 @@ export default {
   },
   methods: {
     resultLink() {
-      return this.movieTitle
-        ? `${this.resultLinkUri}${this.resultLinkQuery}+movie`
-        : `${this.resultLinkUri}${this.resultLinkQuery}+tv+series`;
+      return this.resultLinkUri + this.resultLinkQuery;
     },
   },
   props: {
@@ -104,12 +104,14 @@ export default {
     movieOriginalLanguage: String,
     movieVoteAverage: Number,
     movieId: Number,
+    movieReleaseDate: String,
     seriePoster: String,
     serieName: String,
     serieOriginalName: String,
     serieOriginalLanguage: String,
     serieVoteAverage: Number,
     serieId: Number,
+    serieFirstairDate: String,
   },
 };
 </script>

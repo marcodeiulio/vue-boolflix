@@ -19,6 +19,7 @@
         :movie-original-language="movie.original_language"
         :movie-vote-average="movie.vote_average"
         :movie-id="movie.id"
+        :movie-release-date="movie.release_date"
       />
     </section>
     <h2 v-if="fetchedShowsFlag">TV Shows</h2>
@@ -32,6 +33,7 @@
         :serie-original-language="serie.original_language"
         :serie-vote-average="serie.vote_average"
         :serie-id="serie.id"
+        :serie-firstair-date="serie.first_air_date"
       />
     </section>
   </div>
