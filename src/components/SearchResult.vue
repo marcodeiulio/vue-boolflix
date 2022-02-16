@@ -21,7 +21,7 @@
       </span>
     </li>
     <li>Original Title: {{ movieOriginalTitle || serieOriginalName }}</li>
-    <li>Average Score: {{ movieVoteAverage || serieVoteAverage }}</li>
+    <li>Average Score: {{ voteMovie || voteSerie }}</li>
   </ul>
 </template>
 
@@ -35,6 +35,12 @@ export default {
     };
   },
   computed: {
+    voteMovie() {
+      return Math.ceil(this.movieVoteAverage / 2);
+    },
+    voteSerie() {
+      return Math.ceil(this.serieVoteAverage / 2);
+    },
     flagImg() {
       return require(`../assets/img/${
         this.movieOriginalLanguage || this.serieOriginalLanguage

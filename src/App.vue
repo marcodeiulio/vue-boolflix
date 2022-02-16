@@ -52,8 +52,6 @@ export default {
       series: [],
       fetchedMoviesFlag: 0,
       fetchedShowsFlag: 0,
-      movieRatings: [],
-      serieRatings: [],
     };
   },
   methods: {
@@ -74,33 +72,15 @@ export default {
         },
       };
 
-      this.fetchAPI(
-        baseUri,
-        config,
-        moviesEndpoint,
-        this.movies,
-        this.movieRatings
-      );
-      this.fetchAPI(
-        baseUri,
-        config,
-        seriesEndpoint,
-        this.series,
-        this.serieRatings
-      );
+      this.fetchAPI(baseUri, config, moviesEndpoint, this.movies);
+      this.fetchAPI(baseUri, config, seriesEndpoint, this.series);
       this.fetchedMoviesFlag = 1;
       this.fetchedShowsFlag = 1;
     },
-    fetchAPI(baseUri, config, endpoint, target, ratings) {
+    fetchAPI(baseUri, config, endpoint, target /* ratings */) {
       axios.get(`${baseUri}/${endpoint}`, config).then((res) => {
         target.push(res.data.results);
-        // console.log(target);
-
-        target.forEach((element) => {
-          element.forEach((e) => {
-            ratings.push(Math.floor(e["vote_average"] / 2));
-          });
-        });
+        console.log(target);
       });
     },
   },
