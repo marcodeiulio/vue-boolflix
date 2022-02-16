@@ -2,7 +2,7 @@
   <header>
     <input
       type="text"
-      placeholder="search query"
+      placeholder="search movies and series"
       v-model="searchQuery"
       @keyup.enter="searchItems"
     />
@@ -30,13 +30,18 @@ export default {
 @import "../assets/scss/_vars.scss";
 header {
   background-color: $black;
-  padding: 20px 10px;
+  padding: 20px 25px;
+  text-align: right;
 
   button {
     color: $black;
+    padding: 5px;
+    font-size: 0.8rem;
   }
   input {
     color: $black;
+    padding: 5px 10px;
+    font-size: 0.8rem;
   }
 }
 </style>

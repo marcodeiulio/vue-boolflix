@@ -19,22 +19,28 @@
           />
         </li> -->
         <li>
-          <h3><strong>Title:</strong> {{ movieTitle || serieName }}</h3>
+          <h3>
+            <span class="highlight">Title: </span> {{ movieTitle || serieName }}
+          </h3>
         </li>
         <li>
+          <span class="highlight">Original Language: </span>
           <img
-            class="flag"
             v-if="hasFlag"
+            class="flag"
             :src="flagImg"
             :alt="movieOriginalLanguage || serieOriginalLanguage"
           />
-          <span v-else
-            >Original Language:
+          <span v-else>
             {{ movieOriginalLanguage || serieOriginalLanguage }}
           </span>
         </li>
-        <li>Original Title: {{ movieOriginalTitle || serieOriginalName }}</li>
         <li>
+          <span class="highlight">Original Title:</span>
+          {{ movieOriginalTitle || serieOriginalName }}
+        </li>
+        <li>
+          <span class="highlight">Rating: </span>
           <i
             v-for="(i, index) in voteMovie || voteSerie || 0"
             :key="index"
@@ -57,7 +63,7 @@ export default {
     return {
       flags: ["it", "en"],
       posterBaseUrl: "http://image.tmdb.org/t/p",
-      posterWidth: "/w500",
+      posterWidth: "/w1280",
       posterBackground: {
         backgroundImage: `url(${this.dynamicBackgroundImage})`,
       },
@@ -110,22 +116,32 @@ export default {
 @import "../assets/scss/_vars.scss";
 
 .flag {
-  width: 50px;
+  width: 40px;
+  margin-left: 5px;
 }
 
 .card {
-  height: 400px;
-  width: 300px;
-  margin-bottom: 25px;
+  // height: 380px;
+  // width: 300px;
+  height: 230px;
+  width: 380px;
+  margin: 25px 10px;
   background-image: url();
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   position: relative;
+  transition: transform 0.8s;
+  border-radius: 5px;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.8s;
+  }
 
   .dimmer {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     color: white;
     position: absolute;
@@ -133,19 +149,30 @@ export default {
     bottom: 0;
     right: 0;
     left: 0;
-    font-family: Arial, sans-serif;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background-color 0.8s;
     &:hover {
       background-color: rgba($color: #000000, $alpha: 0.6);
+      transition: background-color 0.8s;
     }
     &:hover ul {
-      display: block;
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.8s;
     }
     ul {
       list-style-type: none;
-      display: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.4s, opacity 0.8s;
 
       li {
-        font-size: 1.5rem;
+        font-size: 1.5em;
+        .highlight {
+          color: $red;
+          font-size: 1.8rem;
+        }
       }
     }
   }

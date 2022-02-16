@@ -104,6 +104,10 @@ export default {
 @import "./assets/scss/style.scss";
 #app {
   color: white;
+  h2 {
+    font-size: 2.5rem;
+    margin-left: 15px;
+  }
 }
 
 #movies-results,
