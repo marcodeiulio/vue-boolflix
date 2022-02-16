@@ -153,7 +153,7 @@ export default {
     padding: 5px;
     transition: background-color 0.8s;
     &:hover {
-      background-color: rgba($color: #000000, $alpha: 0.6);
+      background-color: rgba($color: #000000, $alpha: 0.8);
       transition: background-color 0.8s;
     }
     &:hover ul {

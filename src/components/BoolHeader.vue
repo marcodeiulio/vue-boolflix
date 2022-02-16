@@ -1,12 +1,15 @@
 <template>
   <header>
-    <input
-      type="text"
-      placeholder="search movies and series"
-      v-model="searchQuery"
-      @keyup.enter="searchItems"
-    />
-    <button id="submit-query" @click="searchItems">Search</button>
+    <h1>Boolflix</h1>
+    <div>
+      <input
+        type="text"
+        placeholder="search movies and series"
+        v-model="searchQuery"
+        @keyup.enter="searchItems"
+      />
+      <button id="submit-query" @click="searchItems">Search</button>
+    </div>
   </header>
 </template>
 
@@ -31,7 +34,13 @@ export default {
 header {
   background-color: $black;
   padding: 20px 25px;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: $red;
+  }
 
   button {
     color: $black;
